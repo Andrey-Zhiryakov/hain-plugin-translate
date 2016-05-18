@@ -8,6 +8,8 @@ module.exports = (pluginContext) => {
     const toast = pluginContext.toast;
     const prefObj = pluginContext.preferences;
 
+    const pref = prefObj.get();
+
     const args = [
         {"argument" : "-sl" },
         {"argument" : "-tl" },
@@ -34,26 +36,40 @@ module.exports = (pluginContext) => {
     function execute(id, payload) {
 
         if (payload == 'translate') {
-            var sourceLang = ((getByArg("sl", id) != null)?getByArg("sl", id): prefObj.srcLng ? prefObj.srcLng : "en");
-            var targetLang = ((getByArg("tl", id) != null)?getByArg("tl", id): prefObj.targLng ? prefObj.targLng : "ru");
+            var sourceLang = ((getByArg("sl", id) != null)?getByArg("sl", id): pref.srcLng ? pref.srcLng : "en");
+            var targetLang = ((getByArg("tl", id) != null)?getByArg("tl", id): pref.targLng ? pref.targLng : "ru");
             var sourceText = ((getByArg("m", id) != null)?getByArg("m", id): "");
 
 
             if(sourceText != ""){
-                var url = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20160423T154320Z.a16aa24916c8947b.612925192e37ef98dcbdf46c870ee39edd74d717&text=" +encodeURI(sourceText)+ "&lang="+sourceLang + "-" + targetLang;
+                var url = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20160423T154320Z.a16aa24916c8947b.612925192e37ef98dcbdf46c870ee39edd74d717&text=" +encodeURI(sourceText)+ "&lang="+ sourceLang + "-" + targetLang;
 
                 got(url)
                 .then(response => {
                     var result  = response.body;
                     var data = JSON.parse(result);
-                    toast.enqueue(data.text[0], 2500);
+                    if (!checkStringSimilarity(sourceText, data.text[0])) {
+                      toast.enqueue(data.text[0], 3000);
+                    } else {
+                      url = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20160423T154320Z.a16aa24916c8947b.612925192e37ef98dcbdf46c870ee39edd74d717&text=" +encodeURI(sourceText)+ "&lang="+ targetLang + "-" + sourceLang;
+
+                      got(url).then(response => {
+                        var result  = response.body;
+                        var data = JSON.parse(result);
+                        toast.enqueue(data.text[0], 3000);
+                      })
+                      .catch(err => {
+                        toast.enqueue("An error has occurred", 3000);
+                        toast.enqueue(error.response.body, 3000);
+                      });
+                    }
                 })
                 .catch(error => {
-                    toast.enqueue("An error has occurred", 2500);
-                    toast.enqueue(error.response.body, 2500);
+                    toast.enqueue("An error has occurred", 3000);
+                    toast.enqueue(error.response.body, 3000);
                 });
             }else{
-                toast.enqueue("You must write a sentence to translate", 2500);
+                toast.enqueue("You must write a sentence to translate", 3000);
             }
 
         }else{
@@ -107,6 +123,28 @@ module.exports = (pluginContext) => {
             }
         }
         return null;
+    }
+
+    function checkStringSimilarity(sourceString, similarString) {
+      var src = sourceString.split(' '),
+      similarStr = similarString.split(' '),
+      similar = 0,
+      sourceLength = src.length;
+
+      for (var ind in src) {
+        let found = similarStr.indexOf(src[ind]);
+        if (found > -1) {
+          similar++;
+          src.splice(ind);
+          similarStr.splice(found);
+        }
+
+        if (similar > src.length) {
+          return true;
+        }
+      }
+
+      return false;
     }
     return {search, execute};
 };
