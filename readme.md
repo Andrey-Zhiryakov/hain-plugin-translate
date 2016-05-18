@@ -2,6 +2,7 @@
 	Hain Translate (Extended)
 </h1>
 
+***Hain plugin to translate sentence, based on https://github.com/tchoisy/hain-plugin-translate.git***
 
 ## Usage
 
@@ -9,9 +10,9 @@
 /translate -m your_sentence -tl target_language -sl source_language
 ```
 
-if you want to translate to language selected as source language, just write the sentence on language selected as target language.
+If you want to translate to language selected as source language, just write the sentence on language selected as target language.
 
-to switch languages go to preferences, then select translate-ex plugin and set source and target languages to what you want.
+To switch languages go to preferences, then select translate-ex plugin and set source and target languages to what you want.
 
 
 ## Related
@@ -22,4 +23,6 @@ to switch languages go to preferences, then select translate-ex plugin and set s
 
 ## License
 
-MIT © [Tommy CHOISY](https://github.com/tchoisy)
+MIT © [Andrey Zhiryakov](https://github.com/Andrey-Zhiryakov)
+
+Plugin Author: [Tommy CHOISY](https://github.com/tchoisy/)

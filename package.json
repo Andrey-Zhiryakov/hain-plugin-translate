@@ -1,7 +1,7 @@
 {
   "name": "hain-plugin-translate-ex",
-  "version": "0.1.4",
-  "description": "Hain plugin to translate sentence, based on https://github.com/tchoisy/hain-plugin-translate.git",
+  "version": "0.1.5",
+  "description": "Hain plugin to translate sentence, can make reverse translate, default languages stored in preferences",
   "main": "index.js",
   "repository": {
     "type": "git",
