@@ -6,6 +6,7 @@ const got = require('got');
 module.exports = (pluginContext) => {
     const shell = pluginContext.shell;
     const toast = pluginContext.toast;
+    const prefObj = pluginContext.preferences;
 
     const args = [
         {"argument" : "-sl" },
@@ -27,20 +28,20 @@ module.exports = (pluginContext) => {
             desc: 'Translate your sentence',
             icon: "#fa fa-language",
         });
-        
+
     }
 
     function execute(id, payload) {
-        
+
         if (payload == 'translate') {
-            var sourceLang = ((getByArg("sl", id) != null)?getByArg("sl", id): "en");
-            var targetLang = ((getByArg("tl", id) != null)?getByArg("tl", id): "fr");
+            var sourceLang = ((getByArg("sl", id) != null)?getByArg("sl", id): prefObj.srcLng ? prefObj.srcLng : "en");
+            var targetLang = ((getByArg("tl", id) != null)?getByArg("tl", id): prefObj.targLng ? prefObj.targLng : "ru");
             var sourceText = ((getByArg("m", id) != null)?getByArg("m", id): "");
-            
+
 
             if(sourceText != ""){
                 var url = "https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20160423T154320Z.a16aa24916c8947b.612925192e37ef98dcbdf46c870ee39edd74d717&text=" +encodeURI(sourceText)+ "&lang="+sourceLang + "-" + targetLang;
-                
+
                 got(url)
                 .then(response => {
                     var result  = response.body;
@@ -54,7 +55,7 @@ module.exports = (pluginContext) => {
             }else{
                 toast.enqueue("You must write a sentence to translate", 2500);
             }
-    
+
         }else{
             return;
         }
@@ -71,7 +72,7 @@ module.exports = (pluginContext) => {
         if(obj.length == 0){
             obj.push({"arg": "-m", "value" : query });
         }
-        return obj; 
+        return obj;
     }
 
     function getValue(arg, query){
@@ -79,10 +80,10 @@ module.exports = (pluginContext) => {
         if(pos != 0){
             query = query.substr(pos, query.length);
         }
-        
+
         query = query.substr(arg.length, query.length);
         query = query.substr(0, posNextArg(query));
-        
+
         return query.trim();
     }
 
