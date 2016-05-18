@@ -1,6 +1,6 @@
 {
   "name": "hain-plugin-translate-ex",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Hain plugin to translate sentence, based on https://github.com/tchoisy/hain-plugin-translate.git",
   "main": "index.js",
   "repository": {
@@ -10,7 +10,7 @@
   "author": "Andrey Zhiryakov",
   "license": "MIT",
   "keywords": [
-    "hain0, hain, hain plugin, hain translate"
+    "hain0"
   ],
   "homepage": "https://github.com/Andrey-Zhiryakov/hain-plugin-translate.git",
   "hain": {
