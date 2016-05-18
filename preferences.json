@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "properties": {
+    "srcLng": {
+      "type": "string",
+      "title": "Source languarge",
+      "default": "ru"
+    },
+    "targLng": {
+      "type": "string",
+      "title": "Target languarge",
+      "default": "en"
+    }
+  }
+}

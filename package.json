@@ -1,23 +1,23 @@
 {
-  "name": "hain-plugin-translate",
-  "version": "0.0.4",
-  "description": "Hain plugin to translate sentence",
+  "name": "hain-plugin-translate-ex",
+  "version": "0.0.1",
+  "description": "Hain plugin to translate sentence, based on https://github.com/tchoisy/hain-plugin-translate.git",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tchoisy/hain-plugin-translate.git"
+    "url": "git+https://github.com/Andrey-Zhiryakov/hain-plugin-translate.git"
   },
-  "author": "Tommy CHOISY",
+  "author": "Andrey Zhiryakov",
   "license": "MIT",
   "keywords": [
-    "hain0"
+    "hain, hain plugin, hain translate"
   ],
-  "homepage": "https://github.com/tchoisy/hain-plugin-translate.git",
+  "homepage": "https://github.com/Andrey-Zhiryakov/hain-plugin-translate.git",
   "hain": {
-    "prefix": "/translate",
-    "usage": "/translate your sentence",
+    "prefix": "/translate-ex",
+    "usage": "/translate-ex your sentence",
     "icon": "/icon.png",
-    "redirect": "/translate "
+    "redirect": "/translate-ex "
   },
   "dependencies": {
     "got": "^6.2.0"
