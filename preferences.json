@@ -3,12 +3,12 @@
   "properties": {
     "srcLng": {
       "type": "string",
-      "title": "Source languarge",
+      "title": "Source language",
       "default": "ru"
     },
     "targLng": {
       "type": "string",
-      "title": "Target languarge",
+      "title": "Target language",
       "default": "en"
     }
   }
