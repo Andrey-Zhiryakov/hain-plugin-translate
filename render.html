@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <style media="screen">
+    html, body {
+      margin: 0;
+      padding: 2px;
+      font-size: 18px;
+      font-family: 'Helvetiva-neue', Arial, sans-serif;
+      color: #002449;
+    }
+    .wrapper {
+      width: 100%;
+      height: 100%;
+      padding: 5px;
+      box-sizing: border-box;
+      border-radius: 25px;
+      font-size: 20px;
+      font-weight: bold;
+      background-color: #c7ff7e;
+    }
+
+    input {
+      width: 1px;
+      height: 1px;
+      position: absolute;
+      left: -999px;
+      top: -999px;
+    }
+
+    button {
+      margin: 5px;
+    }
+  </style>
+  <div class="wrapper">
+    <p class="translated">
+      %sentence%
+      <p>
+  </div>
+  <input type="text">
+  <button type="button" onclick="(function (){
+    var input = document.querySelector('input');
+    input.value = document.querySelector('.translated').innerText;
+    input.select();
+    document.execCommand('copy');
+  })();">To clipboard</button>
+
+</body>
+</html>

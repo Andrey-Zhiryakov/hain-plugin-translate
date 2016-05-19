@@ -14,6 +14,7 @@ If you want to translate to language selected as source language, just write the
 
 To switch languages go to preferences, then select translate-ex plugin and set source and target languages to what you want.
 
+Now the plugin has the ability to translate on the fly. This option is enabled by default. You can change this behavior in settings. You need to  ```/reload``` to apply changes.
 
 ## Related
 
