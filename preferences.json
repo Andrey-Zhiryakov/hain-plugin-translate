@@ -10,6 +10,11 @@
       "type": "string",
       "title": "Target language",
       "default": "en"
+    },
+    "asHint": {
+      "type": "boolean",
+      "title": "Show translated sentence as pop-up hint",
+      "default": false
     }
   }
 }
