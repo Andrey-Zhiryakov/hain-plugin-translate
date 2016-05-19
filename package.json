@@ -1,6 +1,6 @@
 {
   "name": "hain-plugin-translate-ex",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Hain plugin to translate sentence, can make reverse translate, translate on fly, copy to clipboard, default languages stored in preferences",
   "main": "index.js",
   "repository": {

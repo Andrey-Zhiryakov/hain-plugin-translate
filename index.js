@@ -133,7 +133,7 @@ module.exports = (pluginContext) => {
         if (found > -1) {
           similar++;
           src.splice(ind);
-          similarStr.splice(found);
+          similarStr.splice(found, 1);
         }
 
         if (similar > src.length) {
